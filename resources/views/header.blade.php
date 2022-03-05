@@ -30,6 +30,9 @@
               <div class="login-reg">
                 @if(auth()->check())
                   <a href="#">{{ auth()->user()->name }}</a>
+                  @if(auth()->user()->role_id == 1)
+                    <a href="/admin">Admin</a>
+                  @endif
                   <a href="/logout">Logout</a>
                 @else
                   <a href="/register">Sign Up</a>

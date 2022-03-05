@@ -66,3 +66,8 @@ Route::get('/reservation', function () {
 
 
 
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
