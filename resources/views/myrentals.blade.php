@@ -42,66 +42,29 @@
         </div>
       </div>
       <div class="row mb-none-30">
-        <div class="col-lg-4 col-sm-6">
-          <div class="post-item shadow-none">
-            <div class="thumb">
-              <img src="assets/images/cars/1.jpg" alt="image">
-              <a href="#0" class="post-date">16<br>Dec</a>
-            </div>
-            <div class="content">
-              <div style="display: flex; flex-direction: row; justify-content:space-between;">
-                <h3 class="post-title pb-2">Mistubisshi</h3>
-                <h4 style="color: green;">Render</h4>
+        @foreach($emprunts as $emprunt)
+          <div class="col-lg-4 col-sm-6">
+            <div class="post-item shadow-none">
+              <div class="thumb">
+                <img src="assets/images/cars/1.jpg" alt="image">
+                <a href="#0" class="post-date">16<br>Dec</a>
               </div>
-              <a href="history-details.html" class="border-btn">read more</a>
+              <div class="content">
+                <div style="display: flex; flex-direction: row; justify-content:space-between;">
+                  <h3 class="post-title pb-2"> {{$emprunt->car["name"]}} </h3>
+                  @if($emprunt->car["etat"] == "Render")
+                    <h4 style="color: green;">{{$emprunt->car["etat"]}}</h4>
+                  @elseif($emprunt->car["etat"] == "Waiting")
+                    <h4 style="color: yellow;">{{$emprunt->car["etat"]}}</h4>
+                  @else
+                    <h4 style="color: blu;">{{$emprunt->car["etat"]}}</h4>
+                  @endif
+                </div>
+                <a href="history-details.html" class="border-btn">read more</a>
+              </div>
             </div>
           </div>
-        </div><!-- post-item end -->
-        <div class="col-lg-4 col-sm-6">
-          <div class="post-item shadow-none">
-            <div class="thumb">
-              <img src="assets/images/cars/1.jpg" alt="image">
-              <a href="#0" class="post-date">16<br>Dec</a>
-            </div>
-            <div class="content">
-              <div style="display: flex; flex-direction: row; justify-content:space-between;">
-                <h3 class="post-title pb-2">Porche</h3>
-                <h4 style="color: rgb(194, 94, 12);">Waiting</h4>
-              </div>
-              <a href="history-details.html" class="border-btn">read more</a>
-            </div>
-          </div>
-        </div><!-- post-item end -->
-        <div class="col-lg-4 col-sm-6">
-          <div class="post-item shadow-none">
-            <div class="thumb">
-              <img src="assets/images/cars/1.jpg" alt="image">
-              <a href="#0" class="post-date">16<br>Dec</a>
-            </div>
-            <div class="content">
-              <div style="display: flex; flex-direction: row; justify-content:space-between;">
-                <h3 class="post-title pb-2">Mistubisshi</h3>
-                <h4 style="color: rgb(0, 51, 128);">In use</h4>
-              </div>
-              <a href="history-details.html" class="border-btn">read more</a>
-            </div>
-          </div>
-        </div><!-- post-item end -->
-        <div class="col-lg-4 col-sm-6">
-          <div class="post-item shadow-none">
-            <div class="thumb">
-              <img src="assets/images/cars/1.jpg" alt="image">
-              <a href="#0" class="post-date">16<br>Dec</a>
-            </div>
-            <div class="content">
-              <div style="display: flex; flex-direction: row; justify-content:space-between;">
-                <h3 class="post-title pb-2">Mistubisshi</h3>
-                <h4 style="color: green;">Render</h4>
-              </div>
-              <a href="history-details.html" class="border-btn">read more</a>
-            </div>
-          </div>
-        </div><!-- post-item end -->
+        @endforeach
       </div>
     </div>
   </section>

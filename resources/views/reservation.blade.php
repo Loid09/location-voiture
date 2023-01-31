@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Rental-Car</title>
-  <link rel="shortcut icon" type="image/png" href="assets/images/favicon.jpg"/>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/favicon.jpg') }}"/>
   <!-- site favicon -->
   @include("csslink")
 
@@ -33,6 +33,16 @@
   </section>
   <!-- inner-apge-banner end -->
 
+  <div class="container pt-120">
+    <div style="width:50%;">
+      @if(session()->has('message'))
+          <div class="alert alert-success">
+            {{ session()->get('message') }}
+          </div>
+      @endif
+    </div>
+  </div>
+
   <!-- reservation-section start -->
   <section class="reservation-section pt-120 pb-120">
     <div class="container">
@@ -40,64 +50,31 @@
         <div class="col-lg-8">
           <div class="reservation-details-area">
             <div class="thumb">
-              <img src="assets/images/cars/b1.jpg" alt="images">
+              <img src="{{ asset('storage/'.$car->image) }}" alt="images">
             </div>
             <div class="content">
               <div class="content-block">
-                <h3 class="car-name">forester subar</h3>
-                <span class="price">$20 per day</span>
-                <p>Lorem ipsum dolor sit amet, urna sit sociis lacus sem turpis magna, montes euismod eros nu dignsim etiam elementum sed tellus sed. Sollicitudin occaecati ut
+                <h3 class="car-name"> {{ $car->name }}</h3>
+                <span class="price"> {{ $car->prix }} per day</span>
+                <p>{{ $car->description }}
                 </p>
               </div>
-              <form class="reservation-form">
+              <form class="reservation-form" method="post" action="/emprunt">
+                {{ csrf_field() }}
+
                 <div class="content-block">
                   <h3 class="title">extra benifit and fee</h3>
                   <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">television   $05 per day</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                        <label class="form-check-label" for="exampleCheck2">childen seat</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                        <label class="form-check-label" for="exampleCheck3">backfast & lunch $20 per day</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                        <label class="form-check-label" for="exampleCheck4">car insurances</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck5">
-                        <label class="form-check-label" for="exampleCheck5">air-condition $35 per day</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck6">
-                        <label class="form-check-label" for="exampleCheck6">security & safety</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
                     <div class="form-group col-md-6">
-                      <i class="fa fa-calendar"></i>
-                      <input type='text' class='form-control has-icon datepicker-here' data-language='en' placeholder="Pickup Date/Time">
+                      <label for="date1">Date debut emprunt</label>
+                      <input type='datetime-local' id="date1" class='form-control' data-language='en' placeholder="Pickup Date/Time" name="date_debut_emprunt">
                     </div>
                     <div class="form-group col-md-6">
-                      <i class="fa fa-calendar"></i>
-                      <input type='text' class='form-control has-icon datepicker-here' data-language='en' placeholder="Drop Off Date/Time">
+                      <label for="date2">Date fin emprunt</label>
+                      <input type='datetime-local' id="date2" class='form-control' data-language='en' placeholder="Drop Off Date/Time" name="date_fin_emprunt">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input type="hidden" name="car_id" value="{{ $car->id }}">
                     </div>
                   </div>
                 </div>
@@ -105,11 +82,11 @@
                   <h3 class="title">payment method</h3>
                   <div class="row">
                     <div class="col-lg-6 form-group">
-                      <select>
+                      <select name='payement'>
                         <option>Select Payment Methos</option>
-                        <option>Paypal</option>
-                        <option>Payoneer</option>
-                        <option>Visa Card</option>
+                        <option value='Paypal'>Paypal</option>
+                        <option value='Payoneer'>Payoneer</option>
+                        <option value='Visa Card'>Visa Card</option>
                       </select>
                     </div>
                   </div>
@@ -118,7 +95,7 @@
                   <h3 class="title">addisonal information</h3>
                   <div class="row">
                     <div class="col-lg-12 form-group">
-                      <textarea placeholder="Write addisonal information in here"></textarea>
+                      <textarea placeholder="Write addisonal information in here" name='info'></textarea>
                     </div>
                     <div class="col-lg-12">
                       <button type="reset" class="cmn-btn bg-black">Cancel</button>
@@ -135,11 +112,11 @@
             <div class="widget widget-all-cars">
               <h4 class="widget-title">Car Features</h4>
               <ul class="cars-list">
-                <li><a href="#0">Name</a></li>
-                <li><a href="#0">Model</a></li>
-                <li><a href="#0">Marque</a></li>
-                <li><a href="#0">Vitesse</a></li>
-                <li><a href="#0">Price</a></li>
+                <li><a href="#0">Name : {{$car->name}}</a></li>
+                <li><a href="#0">Model : {{$car->modele['name']}}</a></li>
+                <li><a href="#0">Marque : {{$car->marque['name']}}</a></li>
+                <li><a href="#0">Vitesse : {{$car->vitesse}}</a></li>
+                <li><a href="#0">Price : {{$car->prix}}</a></li>
               </ul>
             </div>
           </aside>

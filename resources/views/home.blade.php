@@ -47,48 +47,40 @@
               <div class="row">
                 <div class="col-lg-12 form-group">
                   <select>
-                    <option value="1" selected>By Category</option>
-                    <option value="2">Car type one</option>
-                    <option value="3">Car type Two</option>
-                    <option value="4">Car type Three</option>
-                    <option value="5">Car type Four</option>
-                    <option value="6">Car type Five</option>
+                    <option value="0" selected>By Name</option>
+                    @foreach($names as $name)
+                    <option value="{{ $name["name"] }}">{{ $name["name"] }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 form-group">
                   <select>
-                    <option value="1" selected>By Model</option>
-                    <option value="2">Car type one</option>
-                    <option value="3">Car type Two</option>
-                    <option value="4">Car type Three</option>
-                    <option value="5">Car type Four</option>
-                    <option value="6">Car type Five</option>
+                    <option value="0" selected>By Model</option>
+                    @foreach($modeles as $modele)
+                    <option value="{{ $modele->name }}">{{ $modele->name }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 form-group">
                   <select>
-                    <option value="1" selected>By brand</option>
-                    <option value="2">Car type one</option>
-                    <option value="3">Car type Two</option>
-                    <option value="4">Car type Three</option>
-                    <option value="5">Car type Four</option>
-                    <option value="6">Car type Five</option>
+                    <option value="0" selected>By Marque</option>
+                    @foreach($marques as $marque)
+                    <option value="{{ $marque->name }}">{{ $marque->name }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 form-group">
                   <select>
-                    <option value="1" selected>By price</option>
-                    <option value="2">Car type one</option>
-                    <option value="3">Car type Two</option>
-                    <option value="4">Car type Three</option>
-                    <option value="5">Car type Four</option>
-                    <option value="6">Car type Five</option>
+                    <option value="0" selected>By price</option>
+                    @foreach($prices as $price)
+                    <option value="{{ $price["prix"] }}">{{ $price["prix"] }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -184,106 +176,31 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="choose-car-slider owl-carousel">
-            <div class="car-item">
-              <div class="thumb">
-                <img src="assets/images/cars/1.jpg" alt="image">
-              </div>
-              <div class="car-item-body">
-                <div class="content">
-                  <h4 class="title">Categorie</h4>
-                  <span class="price">$20 per day</span>
-                  <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                  <a href="reservation.html" class="cmn-btn">rent car</a>
+
+            @foreach($cars as $car)
+
+              <div class="car-item">
+                <div class="thumb">
+                  <img src="{{ asset('storage/'.$car->image) }}" alt="image">
                 </div>
-                <div class="car-item-meta">
-                  <ul class="details-list">
-                    <li><i class="fa fa-car"></i>model 2014ib</li>
-                    <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                    <li><i class="fa fa-sliders"></i>Marque</li>
-                  </ul>
+                <div class="car-item-body">
+                  <div class="content">
+                    <h4 class="title">{{ $car->name }}</h4>
+                    <span class="price">{{ $car->prix }} per day</span>
+                    <p>{{ $car->description }}</p>
+                    <a href="/reservation/{{ $car->id }}" class="cmn-btn">rent car</a>
+                  </div>
+                  <div class="car-item-meta">
+                    <ul class="details-list">
+                      <li><i class="fa fa-car"></i>{{ $car->modele['name'] }}</li>
+                      <li><i class="fa fa-tachometer"></i>{{ $car->vitesse }} KM</li>
+                      <li><i class="fa fa-sliders"></i>{{ $car->marque['name'] }}</li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="car-item">
-              <div class="thumb">
-                <img src="assets/images/cars/2.jpg" alt="image">
-              </div>
-              <div class="car-item-body">
-                <div class="content">
-                  <h4 class="title">forester subar</h4>
-                  <span class="price">$50 per day</span>
-                  <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                  <a href="reservation.html" class="cmn-btn">rent car</a>
-                </div>
-                <div class="car-item-meta">
-                  <ul class="details-list">
-                    <li><i class="fa fa-car"></i>model 2014ib</li>
-                    <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                    <li><i class="fa fa-sliders"></i>Marque</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="car-item">
-              <div class="thumb">
-                <img src="assets/images/cars/3.jpg" alt="image">
-              </div>
-              <div class="car-item-body">
-                <div class="content">
-                  <h4 class="title">subaru liberty</h4>
-                  <span class="price">$20 per day</span>
-                  <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                  <a href="reservation.html" class="cmn-btn">rent car</a>
-                </div>
-                <div class="car-item-meta">
-                  <ul class="details-list">
-                    <li><i class="fa fa-car"></i>model 2014ib</li>
-                    <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                    <li><i class="fa fa-sliders"></i>Marque</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="car-item">
-              <div class="thumb">
-                <img src="assets/images/cars/1.jpg" alt="image">
-              </div>
-              <div class="car-item-body">
-                <div class="content">
-                  <h4 class="title">mistubisshi</h4>
-                  <span class="price">$120 per day</span>
-                  <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                  <a href="reservation.html" class="cmn-btn">rent car</a>
-                </div>
-                <div class="car-item-meta">
-                  <ul class="details-list">
-                    <li><i class="fa fa-car"></i>model 2014ib</li>
-                    <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                    <li><i class="fa fa-sliders"></i>Marque</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="car-item">
-              <div class="thumb">
-                <img src="assets/images/cars/2.jpg" alt="image">
-              </div>
-              <div class="car-item-body">
-                <div class="content">
-                  <h4 class="title">forester subar</h4>
-                  <span class="price">$60 per day</span>
-                  <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                  <a href="reservation.html" class="cmn-btn">rent car</a>
-                </div>
-                <div class="car-item-meta">
-                  <ul class="details-list">
-                    <li><i class="fa fa-car"></i>model 2014ib</li>
-                    <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                    <li><i class="fa fa-sliders"></i>Marque</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- car-item end -->
+              </div><!-- car-item end -->
+
+            @endforeach
           </div>
         </div>
         <div class="col-lg-4">

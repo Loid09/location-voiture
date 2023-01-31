@@ -13,7 +13,6 @@
 <body>
   <!--  header-section start  -->
   @include('header')
-
   <!-- inner-apge-banner start -->
   <section class="inner-page-banner bg_img overlay-3" data-background="assets/images/inner-page-bg.jpg">
     <div class="container">
@@ -56,150 +55,39 @@
                 </div>
               </form>
             </div>
-            <div class="view-style-toggle-area">
+            <!-- <div class="view-style-toggle-area">
               <button class="view-btn list-btn"><i class="fa fa-bars"></i></button>
               <button class="view-btn grid-btn active"><i class="fa fa-th-large"></i></button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
       <div class="row mt-70">
         <div class="col-lg-8">
           <div class="car-search-result-area grid--view row mb-none-30">
-            <div class="col-md-6 col-12">
-              <div class="car-item">
-                <div class="thumb bg_img" data-background="assets/images/cars/4.jpg"></div>
-                <div class="car-item-body">
-                  <div class="content">
-                    <h4 class="title">pajero rang</h4>
-                    <span class="price">start form $20 per day</span>
-                    <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                    <a href="#0" class="cmn-btn">rent car</a>
+            @foreach($cars as $car)
+              <div class="col-md-6 col-12">
+                  <div class="car-item">
+                    <img class="thumb bg_img" src="{{ asset('storage/'.$car->image) }}"/>
+                    <div class="car-item-body">
+                      <div class="content">
+                        <h4 class="title">{{$car->name}}</h4>
+                        <span class="price">start form ${{$car->prix}} per day</span>
+                        <p>{{$car->description}}</p>
+                        <a href="/reservation/{{$car->id}}" class="cmn-btn">rent car</a>
+                      </div>
+                      <div class="car-item-meta">
+                        <ul class="details-list">
+                          <li><i class="fa fa-car"></i>{{$car->modele['name']}}</li>
+                          <li><i class="fa fa-tachometer"></i>{{$car->vitesse}} KM</li>
+                          <li><i class="fa fa-sliders"></i>{{$car->marque['name']}}</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div class="car-item-meta">
-                    <ul class="details-list">
-                      <li><i class="fa fa-car"></i>model 2014ib</li>
-                      <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                      <li><i class="fa fa-sliders"></i>auto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="col-md-6 col-12">
-              <div class="car-item">
-                <div class="thumb bg_img" data-background="assets/images/cars/5.jpg"></div>
-                <div class="car-item-body">
-                  <div class="content">
-                    <h4 class="title">mirage range</h4>
-                    <span class="price">start form $20 per day</span>
-                    <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                    <a href="#0" class="cmn-btn">rent car</a>
-                  </div>
-                  <div class="car-item-meta">
-                    <ul class="details-list">
-                      <li><i class="fa fa-car"></i>model 2014ib</li>
-                      <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                      <li><i class="fa fa-sliders"></i>auto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="col-md-6 col-12">
-              <div class="car-item">
-                <div class="thumb bg_img" data-background="assets/images/cars/6.jpg"></div>
-                <div class="car-item-body">
-                  <div class="content">
-                    <h4 class="title">Volkswagen</h4>
-                    <span class="price">start form $20 per day</span>
-                    <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                    <a href="#0" class="cmn-btn">rent car</a>
-                  </div>
-                  <div class="car-item-meta">
-                    <ul class="details-list">
-                      <li><i class="fa fa-car"></i>model 2014ib</li>
-                      <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                      <li><i class="fa fa-sliders"></i>auto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="col-md-6 col-12">
-              <div class="car-item">
-                <div class="thumb bg_img" data-background="assets/images/cars/7.jpg"></div>
-                <div class="car-item-body">
-                  <div class="content">
-                    <h4 class="title">Rools royce</h4>
-                    <span class="price">start form $20 per day</span>
-                    <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                    <a href="#0" class="cmn-btn">rent car</a>
-                  </div>
-                  <div class="car-item-meta">
-                    <ul class="details-list">
-                      <li><i class="fa fa-car"></i>model 2014ib</li>
-                      <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                      <li><i class="fa fa-sliders"></i>auto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="col-md-6 col-12">
-              <div class="car-item">
-                <div class="thumb bg_img" data-background="assets/images/cars/8.jpg"></div>
-                <div class="car-item-body">
-                  <div class="content">
-                    <h4 class="title"> Toyota</h4>
-                    <span class="price">start form $20 per day</span>
-                    <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                    <a href="#0" class="cmn-btn">rent car</a>
-                  </div>
-                  <div class="car-item-meta">
-                    <ul class="details-list">
-                      <li><i class="fa fa-car"></i>model 2014ib</li>
-                      <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                      <li><i class="fa fa-sliders"></i>auto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div><!-- car-item end -->
-            <div class="col-md-6 col-12">
-              <div class="car-item">
-                <div class="thumb bg_img" data-background="assets/images/cars/9.jpg"></div>
-                <div class="car-item-body">
-                  <div class="content">
-                    <h4 class="title"> Porsche</h4>
-                    <span class="price">start form $20 per day</span>
-                    <p>Aliquam sollicitudin dolores tristiquvel ornare, vitae aenean.</p>
-                    <a href="#0" class="cmn-btn">rent car</a>
-                  </div>
-                  <div class="car-item-meta">
-                    <ul class="details-list">
-                      <li><i class="fa fa-car"></i>model 2014ib</li>
-                      <li><i class="fa fa-tachometer"></i>32000 KM</li>
-                      <li><i class="fa fa-sliders"></i>auto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div><!-- car-item end -->
+                </div><!-- car-item end -->
+            @endforeach
           </div>
-        </div>
-        <div class="col-lg-4">
-          <aside class="sidebar">
-            <div class="widget widget-price-filter">
-              <h4 class="widget-title">price filter</h4>
-              <div class="widget-body">
-                <div id="slider-range"></div>
-                <div class="filter-price-result">
-                  <input type="text" id="amount" readonly><span>(Per Day)</span>
-                </div>
-              </div>
-            </div><!-- widget end -->
-          </aside>
         </div>
       </div>
     </div>
